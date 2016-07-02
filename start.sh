@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+N=2
 i=1
 while [ $i -lt $N ]
 do
@@ -26,3 +27,20 @@ sudo docker run -d \
   --name=hadoop-master \
   --hostname=hadoop-master \
   jk/namenode
+
+
+mkdir -p /hadoop/hive
+sudo docker rm -f hadoop-mysql
+sudo docker run -d \
+  -v /hadoop/hive:/var/lib/mysql \
+  --net=hadoop \
+  --name=hadoop-mysql \
+  --hostname=hadoop-mysql \
+  mysql
+
+sudo docker rm -f hadoop-hive
+sudo docker run -d \
+  --net=hadoop \
+  --name=hadoop-hive \
+  --hostname=hadoop-hive \
+  jk/hive
