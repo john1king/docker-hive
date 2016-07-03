@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-RUN sed -i "s/archive.ubuntu/mirrors.aliyuncs/g" /etc/apt/sources.list && apt-get update
+RUN sed -i "s/archive.ubuntu/mirrors.aliyun/g" /etc/apt/sources.list && apt-get update
 RUN apt-get install -y --no-install-recommends openjdk-7-jdk
 RUN apt-get install -y --no-install-recommends openssh-server
 
