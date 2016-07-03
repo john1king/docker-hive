@@ -15,7 +15,6 @@
   </property>
   <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:mysql://hadoop-mysql:3306/hive?useSSL=false
-&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</value>
+    <value>jdbc:mysql://hadoop-mysql:3306/hive?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</value>
   </property>
 </configuration>
