@@ -1,8 +1,7 @@
 #! /usr/bin/env bash
 
 N=2
-i=1
-while [ $i -lt $N ]
+for i in $(seq 1 $N)
 do
   sudo mkdir -p /hadoop/dfs/data$i
   sudo docker rm -f hadoop-slave$i
@@ -13,7 +12,6 @@ do
     --name=hadoop-slave$i \
     --hostname=hadoop-slave$i \
     jk/datanode
-  i=$(( $i + 1 ))
 done
 
 sudo mkdir -p /hadoop/dfs/name
@@ -40,6 +38,8 @@ sudo docker run -d \
 
 sudo docker rm -f hadoop-hive
 sudo docker run -d \
+  -p 10000:10000 \
+  -p 10002:10002 \
   --net=hadoop \
   --name=hadoop-hive \
   --hostname=hadoop-hive \
