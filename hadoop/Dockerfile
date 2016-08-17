@@ -1,10 +1,7 @@
-FROM ubuntu:14.04
-
-RUN sed -i "s/archive.ubuntu/mirrors.aliyun/g" /etc/apt/sources.list && apt-get update
-RUN apt-get install -y --no-install-recommends openjdk-7-jdk
-RUN apt-get install -y --no-install-recommends openssh-server
+FROM jk/jdk
 
 # SSH 免密码登录
+RUN apt-get install -y openssh-server
 RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 ADD conf/ssh_config /root/.ssh/config
@@ -15,7 +12,6 @@ ENV HADOOP_VERSION 2.7.2
 COPY hadoop-$HADOOP_VERSION.tar.gz /tmp/hadoop.tar.gz
 RUN tar -xvf /tmp/hadoop.tar.gz -C /opt/ && rm /tmp/hadoop.tar.gz
 
-ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 ENV HADOOP_HOME=/opt/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
