@@ -6,7 +6,7 @@ RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 ADD conf/ssh_config /root/.ssh/config
 
-ENV HADOOP_VERSION 2.7.2
+ENV HADOOP_VERSION 2.6.2
 
 
 COPY hadoop-$HADOOP_VERSION.tar.gz /tmp/hadoop.tar.gz
