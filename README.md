@@ -19,6 +19,6 @@
 
 运行集群
 
-    ./start.sh
+    SLAVE=3 ./start.sh
 
-可以修改 `./start.sh` 和 `slaves` 来增加节点的数量
+可以修改 `SLAVE` 环境变量和 `slaves` 来增加节点的数量
