@@ -1,13 +1,14 @@
 #! /usr/bin/env bash
 
-N=2
-for i in $(seq 1 $N)
+for i in $(seq 1 $SLAVE)
 do
   sudo mkdir -p /hadoop/dfs/data$i
+  sudo mkdir -p /hadoop/tmp/data$i
   sudo docker rm -f hadoop-slave$i
   echo "start hadoop-slave$i ..."
   sudo docker run -d \
     -v /hadoop/dfs/data$i:/hadoop/dfs/data \
+    -v /hadoop/tmp/data$i:/tmp \
     --net=hadoop \
     --name=hadoop-slave$i \
     --hostname=hadoop-slave$i \
